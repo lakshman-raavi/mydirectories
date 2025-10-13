@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>From Elements Demo</title>
+    <style>
+        *{
+            background-color: antiquewhite;
+            text-align: center;
+        }
+        .buttons
+        {
+            color: red;
+        }
+        #b1
+        {
+            background-color: beige;
+        }
+        #b2
+        {
+            background-color: cadetblue;
+        }
+        #b3
+        {
+            background-color: aqua;
+        }
+        #b1:hover
+        {
+            cursor: pointer;
+            background-color: yellow;
+        }
+        #b2:hover
+        {
+            cursor: pointer;
+            background-color: rgba(0, 0, 255, 0.459);
+        }
+        #b3:hover
+        {
+            cursor: pointer;
+            background-color: rgb(255, 0, 30);
+        }
+        header h1
+        {
+            background-color: rgb(19, 110, 207);
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Welcome to my portfolio</h1>
+    </header>
+    <nav>
+        
+        <button type="button">PERSONAL INFORMATION</button>
+        <button type="button">PREFERENCE</button>
+        <button type="button">ADDITIONAL INFORMATION</button>
+
+    </nav>
+    <form action="#" methods="get">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label>Full Name:</label>
+            <input type="text" id="fname" name="fname"placeholder="enter your full name" required/><br/>
+            <label>Email:</lable>
+                <input type="email" id="email" name="email"placeholder="enter email@gmail.com" required/><br/>
+                <label>Password</label>
+                <input type="password" id="name" name="name"placeholder="enter your password" required/><br/>
+                <label>DOB:</label>
+                <input type="date" id="dob" name="dob"placeholder="select your date of birth" required/><br/>
+                <label>Website URL</label>
+                <input type="url" id="wurl" name="wurl"placeholder="enter website url" required/><br/>
+        </fieldset>
+        <fieldset>
+            <legend>Prefrences</legend>
+            <label>Select gender</label><br/>
+            <label>male:</label>
+            <input type="radio" id="male" name="gender" value="male"/>
+            <label>female:</label>
+            <input type="radio" id="female" name="gender" value="female"/><br/>
+            <label>Languages:</label>
+            <label>Telugu:</label>
+            <input type="checkbox" id="Languages">
+            <label>English:</label>
+            <input type="checkbox" id="Languages">
+            <label>Hindi:</label>
+            <input type="checkbox" id="Languages">
+            <label>Select Country</label>
+            <select id="country">
+                <option value=" ">select</option>
+                <option value="india">India</option>
+                <option value="England">England</option>
+                <option value="USA">USA</option>
+            </select>
+            <br/>
+            <label>About Me:</label>
+            <textarea id="aboutme" name="aboutme" rows="5" placeholder="Give introduction"></textarea>
+        </fieldset>
+        <fieldset>
+            <legend>Additional information</legend>
+            <label>upload file:</label>
+            <input type="file" id="file" name="file" accept=".pdf">
+        </fieldset>
+        <div class="buttons">
+            <input type="submit" id="b1" value="submit">
+            <input type="reset" id="b2" value="reset">
+             <input type="button" id="b3" value="onclick" onclick="alert('click me')">
+        </div>
+    </form>
+</body>
+</html>
