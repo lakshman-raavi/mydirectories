@@ -1,0 +1,23 @@
+body 
+{
+  background-color: white;
+}
+
+h1 
+{
+  font-size: 20px;
+}
+/* Responsive styles */
+@media screen and (max-width: 400px) 
+{
+  body 
+  {
+    background-color: blue;
+  }
+
+  h1 
+  {
+    font-size: 60px;
+    color: brown;
+  }
+}

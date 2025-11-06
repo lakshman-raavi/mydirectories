@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Weather App</title>
+</head>
+<body>
+  <h2>Weather Lookup</h2>
+  <form>
+    <input placeholder="Enter city" required>
+    <button>Search</button>
+  </form>
+  <div id="msg"></div>
+  <div id="weather" style="display:none"></div>
+
+<script>
+const f=document.querySelector("form"),inp=f.querySelector("input"),
+      msg=document.getElementById("msg"),out=document.getElementById("weather"),
+      codes={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Fog'}
+
+async function getWeather(city){
+  if(!city.trim()) return msg.textContent="Enter a city";
+  msg.textContent="Searching...";
+  try{
+    let g=await (await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`)).json();
+    if(!g.results) return msg.textContent="City not found",out.style.display="none";
+    let p=g.results[0],place=`${p.name}${p.admin1?", "+p.admin1:""}, ${p.country}`;
+    let w=await (await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.latitude}&longitude=${p.longitude}&current_weather=true&temperature_unit=celsius&windspeed_unit=kmh&timezone=auto`)).json();
+    let d=w.current_weather; if(!d) return msg.textContent="No weather data";
+    out.style.display="block";
+    out.innerHTML=`<h3>${place}</h3><p>${d.temperature}°C, ${codes[d.weathercode]||"?"}</p>
+                   <p>Wind: ${d.windspeed} km/h</p><small>${d.time}</small>`;
+    msg.textContent="Done"; localStorage.setItem("city",city);
+  }catch(e){msg.textContent="Error: "+e.message}
+}
+
+f.onsubmit=e=>{e.preventDefault();getWeather(inp.value)};
+window.onload=()=>{let c=localStorage.getItem("city");if(c) inp.value=c,getWeather(c)};
+</script>
+</body>
+</html>

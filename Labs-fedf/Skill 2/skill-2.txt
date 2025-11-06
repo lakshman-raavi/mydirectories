@@ -1,0 +1,148 @@
+ 1. Create and switch to a new branch named about-feature
+
+bash
+git checkout -b about-feature
+
+
+
+
+ 2. In about-feature, add an About section with headings and text
+
+ Example: Edit index.html or create it if it doesn't exist
+
+html
+<!-- About Section -->
+<section id="about">
+  <h2>About Us</h2>
+  <p>We are committed to providing excellent service and quality content to our users.</p>
+</section>
+
+
+
+
+ 3. Commit your changes with an appropriate message
+
+bash
+git add index.html
+git commit -m "Added About section with heading and paragraph"
+
+
+
+
+ 4. Create another branch contact-feature from main
+
+First, switch back to the main branch:
+
+bash
+git checkout main
+
+
+Then create and switch to the new branch:
+
+bash
+git checkout -b contact-feature
+
+
+
+
+ 5. In contact-feature, add a contact form with name, email, and message fields
+
+ Add to index.html:
+
+html
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message"></textarea><br>
+
+    <input type="submit" value="Send">
+  </form>
+</section>
+
+
+
+
+ 6. Commit changes and merge both branches into the main branch one by one
+
+ Commit the contact changes
+
+bash
+git add index.html
+git commit -m "Added Contact section with form"
+
+
+ Merge about-feature into main
+
+bash
+git checkout main
+git merge about-feature
+
+
+ Merge contact-feature into main
+
+bash
+git merge contact-feature
+
+
+
+
+ 7. Handle merge conflicts (if any) and verify final content
+
+ If Git reports a conflict in index.html, open the file and manually edit:
+
+html
+<<<<<<< HEAD
+<!-- About Section -->
+<section id="about">
+  <h2>About Us</h2>
+  <p>We are committed to providing excellent service and quality content to our users.</p>
+</section>
+=======
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form>...</form>
+</section>
+>>>>>>> contact-feature
+
+
+ Resolve by keeping both sections:
+
+html
+<!-- About Section -->
+<section id="about">
+  <h2>About Us</h2>
+  <p>We are committed to providing excellent service and quality content to our users.</p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form>...</form>
+</section>
+
+
+Then:
+
+bash
+git add index.html
+git commit -m "Resolved merge conflict: combined About and Contact sections"
+
+
+
+
+ Final Verification:
+
+bash
+git log --oneline
+cat index.html
+
+

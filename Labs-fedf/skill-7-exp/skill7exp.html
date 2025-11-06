@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookstore</title>
+</head>
+<body>
+  <h1>Bookstore</h1>
+
+  <div id="book-list"></div>
+
+  <h2>Cart</h2>
+  <div id="cart">(Cart is empty)</div>
+  <p id="total"></p>
+  <button id="checkout">Checkout</button>
+
+  <script>
+    const books = [
+      { title: "Learn JavaScript", price: 299, stock: true },
+      { title: "HTML & CSS", price: 199, stock: true },
+      { title: "Advanced Algorithms", price: 399, stock: false }
+    ];
+
+    let cart = [];
+
+    function showBooks() {
+      const list = document.getElementById("book-list");
+      list.innerHTML = "";
+      books.forEach((b,i) => {
+        list.innerHTML += `
+          <div>
+            <h3>${b.title}</h3>
+            <p>₹${b.price}</p>
+            <button ${!b.stock?"disabled":""} onclick="add(${i})">Add</button>
+          </div>`;
+      });
+    }
+
+    function add(i){ cart.push(books[i]); showCart(); }
+    function remove(i){ cart.splice(i,1); showCart(); }
+
+    function showCart(){
+      const c=document.getElementById("cart");
+      if(!cart.length){ c.textContent="(Cart is empty)"; total.textContent=""; return; }
+      c.innerHTML="";
+      cart.forEach((item,i)=>{
+        c.innerHTML+=`${item.title} - ₹${item.price} <button onclick="remove(${i})">X</button><br>`;
+      });
+      total.textContent="Total: ₹"+cart.reduce((s,x)=>s+x.price,0);
+    }
+
+    checkout.onclick=()=> cart.length?alert("Order placed!"):alert("Cart empty");
+    
+    showBooks(); showCart();
+  </script>
+</body>
+</html>
